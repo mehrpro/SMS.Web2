@@ -1,14 +1,28 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PersianTranslation.Identity;
 using SMS.Web;
 using SMS.Web.Models;
 using SMS.Web.Infrastructure;
+using SMS.Web.Models.AutoMapConfigure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-
+builder.Services.AddAutoMapper(typeof(StartupBase));
 // Add services to the container.
-builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(
+        opts =>
+        {
+            opts.SignIn.RequireConfirmedEmail = true;
+            opts.User.RequireUniqueEmail = true;
+
+        }
+    ).AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+    .AddErrorDescriber<PersianIdentityErrorDescriber>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(opts =>
 {

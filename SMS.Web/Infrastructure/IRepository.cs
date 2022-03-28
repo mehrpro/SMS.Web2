@@ -6,9 +6,9 @@ namespace SMS.Web.Infrastructure
     public interface IRepository<TEntity> where TEntity : class
     {
         ValueTask<TEntity> FindByIdAsync(int Id);
-        Task<IEnumerable<TEntity>> FindAllAsync();
+        Task<List<TEntity>> GetAllAsync();
         ValueTask<TEntity> FindCondition(Expression<Func<TEntity, bool>> predicate);
-        Task<IEnumerable<TEntity>> FindAllByCondition(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> GetAllByCondition(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         Task AddAsync(TEntity entity);
@@ -47,7 +47,7 @@ namespace SMS.Web.Infrastructure
             return await Context.Set<TEntity>().FindAsync(predicate);
         }
 
-        public async Task<IEnumerable<TEntity>> FindAllAsync()
+        public async Task<List<TEntity>> GetAllAsync()
         {
             return await Context.Set<TEntity>().ToListAsync();
         }
@@ -79,7 +79,7 @@ namespace SMS.Web.Infrastructure
 
 
 
-        public async Task<IEnumerable<TEntity>> FindAllByCondition(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> GetAllByCondition(Expression<Func<TEntity, bool>> predicate)
         {
             return await Context.Set<TEntity>().Where(predicate).ToListAsync();
         }

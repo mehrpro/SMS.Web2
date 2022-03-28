@@ -8,7 +8,7 @@
         public void Configure(EntityTypeBuilder<AcademicYear> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x=>x.Id).IsRequired().ValueGeneratedOnAdd();
+            builder.Property(x => x.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Property(x => x.IsDeleted).IsRequired();
             builder.Property(x => x.StartTime).IsRequired().HasColumnType("datetime");
             builder.Property(x => x.EndTime).IsRequired().HasColumnType("datetime");
@@ -17,6 +17,16 @@
                 .WithOne(x => x.AcademicYear)
                 .HasForeignKey(x => x.AcademicID_FK)
                 .OnDelete(DeleteBehavior.NoAction);
+
+
+            builder.HasData(new AcademicYear
+            {
+                Id = 1,
+                YearTilte = "1400-1401",
+                StartTime = new DateTime(2021, 09, 23),
+                EndTime = new DateTime(2022, 06, 21),
+                IsDeleted = false
+            });
         }
     }
 }

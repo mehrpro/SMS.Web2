@@ -2,6 +2,12 @@
 {
     public class Receiver
     {
+        public Receiver()
+        {
+            Tagrecives = new HashSet<tagrecive>();
+            TodayRegistereds = new HashSet<TodayRegistered>();
+        }
+
         public int Id { get; set; }
 
         public int AcademicID_FK { get; set; }
@@ -14,6 +20,11 @@
         public TagCard TagCard { get; set; }
 
         public bool IsDelete { get; set; }
+
+
+        public virtual ICollection<tagrecive> Tagrecives { get; set; }
+        public virtual ICollection<TodayRegistered> TodayRegistereds { get; set; }
+
 
 
 

@@ -20,7 +20,10 @@ namespace SMS.Web.Models
             builder.ApplyConfiguration(new SchoolConfigure());
             builder.ApplyConfiguration(new ReceiverConfigure());
             builder.ApplyConfiguration(new tagreciveConfigure());
-
+            builder.ApplyConfiguration(new TodayRegisteredConfigure());
+            builder.ApplyConfiguration(new CreditWarningConfigure());
+            builder.ApplyConfiguration(new PanelInformationConfigure());
+            builder.ApplyConfiguration(new BrithDayRegisteredConfigure());
         }
 
         public virtual DbSet<AcademicYear> AcademicYears { get; set; }
@@ -29,6 +32,10 @@ namespace SMS.Web.Models
         public virtual DbSet<School> Schools { get; set; }
         public virtual DbSet<Receiver> Receivers { get; set; }
         public virtual DbSet<tagrecive> tagrecive { get; set; }
+        public virtual DbSet<TodayRegistered> TodayRegistereds { get; set; }
+        public virtual DbSet<CreditWarning> CreditWarnings { get; set; }
+        public virtual DbSet<PanelInformation> PanelInformations { get; set; }
+        public virtual DbSet<BrithDayRegistered> BrithDayRegistereds { get; set; }
 
 
     }

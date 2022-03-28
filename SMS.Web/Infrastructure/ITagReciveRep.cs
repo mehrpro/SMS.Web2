@@ -1,10 +1,13 @@
-﻿using SMS.Web.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SMS.Web.Models;
 using SMS.Web.Models.Entities;
 
 namespace SMS.Web.Infrastructure
 {
     public interface ITagReciveRep : IRepository<tagrecive>
     {
+        Task<List<tagrecive>> GetAllSending();
+
     }
 
 
@@ -15,9 +18,16 @@ namespace SMS.Web.Infrastructure
 
         }
 
-        public ApplicationDbContext ApplicationDbContext
+        public ApplicationDbContext ApplicationDbContext => (ApplicationDbContext)Context;
+
+
+        public async Task<List<tagrecive>> GetAllSending()
         {
-            get { return (ApplicationDbContext)Context; }
+            return await ApplicationDbContext.tagrecive
+                .Where(x => x.Delivery == "entry" || x.Delivery == "exit")
+                .Include(x => x.Receiver.Student)
+                .ToListAsync();
+                
         }
     }
     

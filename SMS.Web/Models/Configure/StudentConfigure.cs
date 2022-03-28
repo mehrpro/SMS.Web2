@@ -13,11 +13,13 @@
             builder.Property(x => x.StudentBirthDate).IsRequired().HasColumnType("datetime");
             builder.Property(x => x.StudentName).IsRequired().HasMaxLength(150);
             builder.Property(x => x.IsDeleted).IsRequired();
-            builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(11);
+            
             builder.HasMany(x => x.Receivers)
                 .WithOne(x => x.Student)
                 .HasForeignKey(x => x.StudentID_FK)
                 .OnDelete(DeleteBehavior.NoAction);
+
+
 
         }
     }

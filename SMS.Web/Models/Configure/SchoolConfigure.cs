@@ -16,6 +16,14 @@
                 .WithOne(x => x.School)
                 .HasForeignKey(x => x.SchoolID_FK)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasData(new School
+            {
+                SchoolID = 1,
+                SchoolTitle = "دبستان دخترانه بیجار",
+                Description = "دبستان دخترانه سماء بیجار",
+                IsDeleted = false,
+            });
         }
     }
 }

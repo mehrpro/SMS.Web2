@@ -5,6 +5,7 @@
         public Student()
         {
             Receivers = new HashSet<Receiver>();
+       
         }
 
         /// <summary>
@@ -15,7 +16,7 @@
         public DateTime StudentBirthDate { get; set; }
         public string StudentCode { get; set; }
         public bool IsDeleted { get; set; }
-        public string PhoneNumber { get; set; }
+        public long PhoneNumber { get; set; }
 
         public int SchoolID_FK { get; set; }
         public School School { get; set; }

@@ -1,4 +1,5 @@
-﻿using SMS.Web.Models;
+﻿//using ServiceReference1;
+using SMS.Web.Models;
 
 namespace SMS.Web.Infrastructure
 {
@@ -10,7 +11,12 @@ namespace SMS.Web.Infrastructure
         IStudentRep Student { get; }
         ITagCardRep TagCard { get; }
         ITagReciveRep TagRecive { get; }
- 
+        ITodayRegisteredRep TodayRegistered { get; }
+        //tsmsService TsmsService { get; }
+        ICreditWarningRep CreditWarning { get; }
+        IPanelInformationRep PanelInformation { get; }
+        IBrithDayRegisteredRep BrithDayRegistered { get; }
+
         Task<int> CommitAsync();
     }
 
@@ -24,7 +30,12 @@ namespace SMS.Web.Infrastructure
         private IStudentRep _student;
         private ITagReciveRep _tagRecive;
         private ISchoolRep _school;
-   
+        private ITodayRegisteredRep _todayRegistered;
+        //private tsmsService _tsmsService;
+        private ICreditWarningRep _creditWarningRep;
+        private IPanelInformationRep _panelInformationRep;
+        private IBrithDayRegisteredRep _brithDayRegistered;
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -36,7 +47,11 @@ namespace SMS.Web.Infrastructure
         public IStudentRep Student => _student ??= new StudentRep(_context); 
         public ISchoolRep School => _school ??= new SchoolRep(_context);
         public ITagReciveRep TagRecive => _tagRecive ??= new TagReciveRep(_context);
-
+        public ITodayRegisteredRep TodayRegistered => _todayRegistered ??= new TodayRegisteredRep(_context);
+        //public tsmsService TsmsService => _tsmsService ??= new tsmsServiceClient();
+        public ICreditWarningRep CreditWarning => _creditWarningRep ??= new CreditWarningRep(_context);
+        public IPanelInformationRep PanelInformation => _panelInformationRep ??= new PanelInformationRep(_context);
+        public IBrithDayRegisteredRep BrithDayRegistered => _brithDayRegistered ??= new BrithDayRegisteredRep(_context);
         public Task<int> CommitAsync()
         {
             return _context.SaveChangesAsync();

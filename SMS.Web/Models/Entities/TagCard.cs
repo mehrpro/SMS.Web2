@@ -7,7 +7,7 @@
             Receivers = new HashSet<Receiver>();
         }
 
-        public int TagID { get; set; }
+        public int ID { get; set; }
         public string TagID_HEX { get; set; }
         public string CartView { get; set; }
         public bool IsDeleted { get; set; }

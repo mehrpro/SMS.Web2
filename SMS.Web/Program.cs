@@ -9,10 +9,10 @@ using SMS.Web.Models.AutoMapConfigure;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddAutoMapper(typeof(StartupBase));
+
 // Add services to the container.
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddAutoMapper(typeof(IStartup));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(
         opts =>
         {
